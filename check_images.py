@@ -49,7 +49,12 @@ def main():
     # TODO: 3. Define get_pet_labels() function to create pet image labels by
     # creating a dictionary with key=filename and value=file label to be used
     # to check the accuracy of the classifier function
-    #answers_dic = get_pet_labels()
+    answers_dic = get_pet_labels(in_arg.dir)
+    #Iterating through a dictionary printing all keys & their associated values
+    for key in answers_dic:
+        #print("Key=", key, " Value=", petlabels_dic[key])
+        print("Key= %-35s  Value= %s" % (key, answers_dic[key]))
+
 
     # TODO: 4. Define classify_images() function to create the classifier
     # labels with the classifier function using in_arg.arch, comparing the
@@ -127,7 +132,7 @@ def get_input_args():
     #pass
 
 
-def t_labels():
+def get_pet_labels(image_dir):
     """
     Creates a dictionary of pet labels based upon the filenames of the image
     files. Reads in pet filenames and extracts the pet image labels from the
@@ -140,7 +145,23 @@ def t_labels():
      petlabels_dic - Dictionary storing image filename (as key) and Pet Image
                      Labels (as value)
     """
-    pass
+    #Retrive the filenames form forlder image_dir
+    filename_list = listdir(image_dir)
+    #Creates empty dictionary named petlabels_dic
+    petlabels_dic = dict()
+    #Print 10 of the filenames form folder image_dir
+    print("\nPrints 10 filenames from folder image_dir")
+    for idx in range(0, 10, 1):
+        print("%2d file: %-25s" % (idx + 1,filename_list[idx]))
+    for idx in range(0, len(filename_list), 1):
+        if filename_list[idx] not in petlabels_dic:
+            petlabels_dic[filename_list[idx]] = " ".join(filename_list[idx].split("_")[0:-1]).lower()
+        else:
+            print("** Warning: Key =", filename_list[idx],
+                  "already exists in petlabel_dic with value =", petlabels_dic[filename_list[idx]])
+
+    return petlabels_dic
+    #pass
 
 
 def classify_images():

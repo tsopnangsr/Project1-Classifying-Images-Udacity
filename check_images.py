@@ -41,10 +41,15 @@ def main():
     # line arguments
     in_arg = get_input_args()
 
+    # Accesses values of Arguments 1, 2 and 3 by printing them
+    print("Argument 1:", in_arg.dir, "  Argument 2:", in_arg.arch,
+          "  Argument 3:", in_arg.dogfile)
+    #in_arg.dir - in_arg.arch - in_arg.dogfile
+
     # TODO: 3. Define get_pet_labels() function to create pet image labels by
     # creating a dictionary with key=filename and value=file label to be used
     # to check the accuracy of the classifier function
-    answers_dic = get_pet_labels()
+    #answers_dic = get_pet_labels()
 
     # TODO: 4. Define classify_images() function to create the classifier
     # labels with the classifier function using in_arg.arch, comparing the
@@ -104,11 +109,25 @@ def get_input_args():
      None - simply using argparse module to create & store command line arguments
     Returns:
      parse_args() -data structure that stores the command line arguments object
+    dir = 'pet_images/', arch, dogfile = 'dognames.txt'
     """
-    pass
+    #Creates Argument Parser object named Parser
+    parser = argparse.ArgumentParser()
+    #Argument 1: That's the path to the pet image files (default- "pet_images/")
+    parser.add_argument('--dir', type = str, default = 'pet_images/', help = 'Path to the pet image files')
+
+    #Argument 2: That's the CNN model achitecture to use for image classification
+    parser.add_argument('--arch', type = str, default = 'vgg', help = 'CNN model for image classification: vgg, alexnet, resnet')
+
+    #Argument 3: That's Text file that contains dog names
+    parser.add_argument('--dogfile', type = str, default = 'dognames.txt')
+
+    #Returning variable parse_args()
+    return parser.parse_args()
+    #pass
 
 
-def get_pet_labels():
+def t_labels():
     """
     Creates a dictionary of pet labels based upon the filenames of the image
     files. Reads in pet filenames and extracts the pet image labels from the

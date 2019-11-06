@@ -51,16 +51,33 @@ def main():
     # to check the accuracy of the classifier function
     answers_dic = get_pet_labels(in_arg.dir)
     #Iterating through a dictionary printing all keys & their associated values
-    for key in answers_dic:
-        #print("Key=", key, " Value=", petlabels_dic[key])
-        print("Key= %-35s  Value= %s" % (key, answers_dic[key]))
+    #for key in answers_dic:
+    #    #print("Key=", key, " Value=", petlabels_dic[key])
+    #    print("Key= %-35s  Value= %s" % (key, answers_dic[key]))
 
 
     # TODO: 4. Define classify_images() function to create the classifier
     # labels with the classifier function using in_arg.arch, comparing the
     # labels, and creating a dictionary of results (result_dic)
-    result_dic = classify_images()
+    result_dic = classify_images(in_arg.dir, answers_dic, in_arg.arch)
+    #Declaring variables to count Matches and Non-Matches
+    n_matches = 0
+    n_non_matches = 0
+    #Iterating through a dictionary printing matched values
+    print("** MATCHES")
+    for key in result_dic:
+        if result_dic[key][2] == 1:
+            n_matches += 1
+            print("Label= %-25s  Class= %s " % (result_dic[key][0], result_dic[key][1]))
 
+    #Iterating through a dictionary printing matched values
+    print("** NON MATCHES")
+    for key in result_dic:
+        if result_dic[key][2] == 0:
+            n_non_matches += 1
+            print("Label= %-25s  Class= %s " % (result_dic[key][0], result_dic[key][1]))
+    print("** The total amount of images is ", n_matches+n_non_matches, "** MATCHES", n_matches, "** NON MATCHES", n_non_matches)
+    
     # TODO: 5. Define adjust_results4_isadog() function to adjust the results
     # dictionary(result_dic) to determine if classifier correctly classified
     # images as 'a dog' or 'not a dog'. This demonstrates if the model can
@@ -164,7 +181,7 @@ def get_pet_labels(image_dir):
     #pass
 
 
-def classify_images():
+def classify_images(images_dir, petlabel_dic, model):
     """
     Creates classifier labels with classifier function, compares labels, and
     creates a dictionary containing both labels and comparison of them to be
@@ -189,7 +206,27 @@ def classify_images():
                     idx 2 = 1/0 (int)   where 1 = match between pet image and
                     classifer labels and 0 = no match between labels
     """
-    pass
+    #Creates empty dictionary to store the values to return
+    result_dic = dict()
+    for img_path in petlabel_dic:
+        full_path = images_dir + img_path
+        classifier_label = classifier(full_path, model).lower().strip()
+        pet_label = petlabel_dic[img_path]
+        found_idx = classifier_label.find(pet_label)
+        #if(petlabel_dic[img_path] in image_classification):
+        if(found_idx == 0 and len(pet_label) == len(classifier_label)):
+            #True Match with single term.
+            comparision = 1
+        elif(( (found_idx == 0) or (classifier_label[found_idx - 1] == " ")) and
+            ((found_idx + len(pet_label) == len(classifier_label) ) or
+            (classifier_label[found_idx + len(pet_label) :found_idx + len(pet_label) +1] in  (" ",",")))):
+            #True Match with multiple terms
+            comparision = 1
+        else:
+            comparision = 0
+        result_dic[img_path] = [pet_label, classifier_label, comparision]
+    return result_dic
+    #pass
 
 
 def adjust_results4_isadog():

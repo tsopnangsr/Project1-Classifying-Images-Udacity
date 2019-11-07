@@ -60,6 +60,7 @@ def main():
     # labels with the classifier function using in_arg.arch, comparing the
     # labels, and creating a dictionary of results (result_dic)
     result_dic = classify_images(in_arg.dir, answers_dic, in_arg.arch)
+    '''
     #Declaring variables to count Matches and Non-Matches
     n_matches = 0
     n_non_matches = 0
@@ -77,12 +78,29 @@ def main():
             n_non_matches += 1
             print("Label= %-25s  Class= %s " % (result_dic[key][0], result_dic[key][1]))
     print("** The total amount of images is ", n_matches+n_non_matches, "** MATCHES", n_matches, "** NON MATCHES", n_non_matches)
-    
+    '''
     # TODO: 5. Define adjust_results4_isadog() function to adjust the results
     # dictionary(result_dic) to determine if classifier correctly classified
     # images as 'a dog' or 'not a dog'. This demonstrates if the model can
     # correctly classify dog images as dogs (regardless of breed)
-    adjust_results4_isadog()
+    adjust_results4_isadog(result_dic, in_arg.dogfile)
+    n_matches = 0
+    n_non_matches = 0
+    #Iterating through a dictionary printing matched values
+    print("** MATCHES")
+    for key in result_dic:
+        if result_dic[key][2] == 1:
+            n_matches += 1
+            print("Label= %-25s  Class= %s %s %s " % (result_dic[key][0], result_dic[key][1], str(result_dic[key][3]), str(result_dic[key][4])))
+
+    #Iterating through a dictionary printing matched values
+    print("** NON MATCHES")
+    for key in result_dic:
+        if result_dic[key][2] == 0:
+            n_non_matches += 1
+            print("Label= %-25s  Class= %s %s %s " % (result_dic[key][0], result_dic[key][1], str(result_dic[key][3]), str(result_dic[key][4])))
+    print("** The total amount of images is ", n_matches+n_non_matches, "** MATCHES", n_matches, "** NON MATCHES", n_non_matches)
+
 
     # TODO: 6. Define calculates_results_stats() function to calculate
     # results of run and puts statistics in a results statistics
@@ -229,7 +247,7 @@ def classify_images(images_dir, petlabel_dic, model):
     #pass
 
 
-def adjust_results4_isadog():
+def adjust_results4_isadog(result_dic, dogsfile):
     """
     Adjusts the results dictionary to determine if classifier correctly
     classified images 'as a dog' or 'not a dog' especially when not a match.
@@ -257,7 +275,26 @@ def adjust_results4_isadog():
     Returns:
            None - results_dic is mutable data type so no return needed.
     """
-    pass
+    dognames_dic = dict()
+    for dogname in open(dogsfile, "r"):
+        dogname = dogname.rstrip()
+        if dogname not in dognames_dic:
+            dognames_dic[dogname] = 1
+        else:
+            print("** Warning, the item ", dogname, " Already exists")
+    label_is_a_dog = 0
+    class_is_a_dog = 0
+    for result in result_dic:
+        if dognames_dic.get(result_dic[result][0], 0) == 1:
+            label_is_a_dog = 1
+        else:
+            label_is_a_dog = 0
+        if dognames_dic.get(result_dic[result][1], 0) == 1:
+            class_is_a_dog = 1
+        else:
+            class_is_a_dog = 0
+        result_dic[result].extend([label_is_a_dog, class_is_a_dog])
+    #pass
 
 
 def calculates_results_stats():

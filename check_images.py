@@ -5,7 +5,7 @@
 # TODO: 0. Fill in your information in the programming header below
 # PROGRAMMER:Tsopnang Saounde Romaric
 # DATE CREATED: 4 November 2019
-# REVISED DATE: 4 November 2019            <=(Date Revised - if any)
+# REVISED DATE: 8 November 2019            <=(Date Revised - if any)
 # REVISED DATE: 05/14/2018 - added import statement that imports the print
 #                           functions that can be used to check the lab
 # PURPOSE: Check images & report results: read them in, predict their

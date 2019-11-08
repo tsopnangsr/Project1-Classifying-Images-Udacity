@@ -105,7 +105,9 @@ def main():
     # TODO: 6. Define calculates_results_stats() function to calculate
     # results of run and puts statistics in a results statistics
     # dictionary (results_stats_dic)
-    results_stats_dic = calculates_results_stats()
+    results_stats_dic = calculates_results_stats(result_dic)
+
+    print(results_stats_dic)
 
     # TODO: 7. Define print_results() function to print summary results,
     # incorrect classifications of dogs and breeds if requested.
@@ -297,7 +299,7 @@ def adjust_results4_isadog(result_dic, dogsfile):
     #pass
 
 
-def calculates_results_stats():
+def calculates_results_stats(results_dic):
     """
     Calculates statistics of the results of the run using classifier's model
     architecture on classifying images. Then puts the results statistics in a
@@ -321,7 +323,65 @@ def calculates_results_stats():
                      name (starting with 'pct' for percentage or 'n' for count)
                      and the value is the statistic's value
     """
-    pass
+    results_stats = dict()
+
+    n_images = len(results_dic) #Z
+
+    n_correct_dogs = 0 #A
+    n_correct_not_dogs = 0 #C
+    n_correct_breed = 0 #E
+
+    pct_correct_dogs = 0
+    pct_correct_not_dogs = 0
+    pct_correct_breed = 0
+
+    n_dog_images = 0 #B
+    n_not_dog_images = 0 #D
+    n_label_matches = 0 #Y
+
+    pct_label_matches = 0
+    #Iterating through results_dic to update my counters
+    for result in results_dic:
+        if results_dic[result][3] == 1 and results_dic[result][4] == 1:
+            n_correct_dogs += 1 #A
+
+        if results_dic[result][3] == 1:
+            n_dog_images += 1 #B
+
+        if results_dic[result][3] == 0 and results_dic[result][4] == 0:
+            n_correct_not_dogs += 1 #C
+
+        if results_dic[result][3] == 0:
+            n_not_dog_images += 1 #D
+
+        if results_dic[result][3] == 1 and results_dic[result][2] == 1:
+            n_correct_breed += 1 #E
+
+        if results_dic[result][2] == 1:
+            n_label_matches += 1 #Y
+    pct_correct_dogs = (n_correct_dogs/n_dog_images) * 100 #A/B * 100
+    if n_correct_not_dogs > 0:
+        pct_correct_not_dogs = (n_correct_not_dogs/n_not_dog_images) * 100 #C/D *100
+    else:
+        pct_correct_not_dogs = 0
+    pct_correct_breed = (n_correct_breed/n_dog_images) * 100 #E/B * 100
+    pct_label_matches = (n_label_matches/n_images) * 100 #Y/Z * 100
+
+    #Updating results_stats dictionnary using computed variables
+    results_stats["n_images"] = n_images #Z
+    results_stats["n_correct_dogs"] = n_correct_dogs #A
+    results_stats["n_dog_images"] = n_dog_images #B
+    results_stats["n_correct_not_dogs"] = n_correct_not_dogs #C
+    results_stats["n_not_dog_images"] = n_not_dog_images #D
+    results_stats["n_correct_breed"] = n_correct_breed #E
+    results_stats["n_label_matches"] = n_label_matches #Y
+
+    results_stats["pct_correct_dogs"] = pct_correct_dogs
+    results_stats["pct_correct_not_dogs"] = pct_correct_not_dogs
+    results_stats["pct_correct_breed"] = pct_correct_breed
+    results_stats["pct_label_matches"] = pct_label_matches
+    return results_stats
+    #pass
 
 
 def print_results():

@@ -1,0 +1,16 @@
+
+** Here are the final results of the classification: 
+
+ The model used here is:  resnet
+ The Number of images:  40
+ The Number of Dog Images:  30
+ The Number of "Not-a" Dog Images:  10
+ The percentage of Correct Dogs: 100.0
+ The percentage of Correct Breed: 90.0
+ The percentage of Correct "Not-a" Dog: 90.0
+ The percentage of Match: 82.5
+Images Classification DONE !!!
+
+** Total Elapsed Runtime in seconds : 21
+
+** Total Elapsed Runtime in hh:mm:ss : 0:0:21

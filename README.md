@@ -32,5 +32,8 @@ sh run_models_batch.sh
 
 <p align="center"> <img src="running-results.png"/> </p>
 
+## Results On my Computer with VGG model and pytorch
+
+<p align="center"> <img src="udacity_img_classifier.png"/> </p>
 
 Copyright, All right reserved. by Romaric Tsopnang.

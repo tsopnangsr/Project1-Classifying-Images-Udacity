@@ -117,7 +117,7 @@ def main():
     # TODO: 7. Define print_results() function to print summary results,
     # incorrect classifications of dogs and breeds if requested.
     #print_results()
-    print_results(result_dic, results_stats_dic, in_arg.arch, False, False)
+    print_results(result_dic, results_stats_dic, in_arg.arch, True, True)
 
     # TODO: 1. Define end_time to measure total program runtime
     # by collecting end time
@@ -423,34 +423,35 @@ def print_results(results_dic, results_stats, model, print_incorrect_dogs = Fals
     """
     print("\n** Here are the final results of the classification: \n")
     print(" The model used here is: ", model)
-    print(" The Number of images: ", results_stats["n_images"])
-    print(" The Number of Dog Images: ", results_stats["n_dog_images"])
-    print(" The Number of \"Not-a\" Dog Images: ", results_stats["n_not_dog_images"])
-    print(" The percentage of Correct Dogs:", results_stats["pct_correct_dogs"])
-    print(" The percentage of Correct Breed:", results_stats["pct_correct_breed"])
-    print(" The percentage of Correct \"Not-a\" Dog:", results_stats["pct_correct_not_dogs"])
-    print(" The percentage of Match:", results_stats["pct_label_matches"])
+    print("%26s: %3d" % ("N images", results_stats["n_images"]))
+    print("%26s: %3d" % ("N Dog Images", results_stats["n_dog_images"]))
+    print("%26s: %3d" % ("N Not-Dog Images", results_stats["n_not_dog_images"]))
+    print("\n")
+    print("%26s: %3d" % ("Percentage Correct Dogs", results_stats["pct_correct_dogs"]))
+    print("%26s: %3d" % ("Percentage Correct Breed", results_stats["pct_correct_breed"]))
+    print("%26s: %3d" % ("Percentage Correct Not-Dog", results_stats["pct_correct_not_dogs"]))
+    print("%26s: %3d" % ("Percentage of Match", results_stats["pct_label_matches"]))
     if print_incorrect_dogs == True:
-        print(" Printing dogs Misclassifications: ")
+        print(" \nPrinting dogs Misclassifications: ")
         if results_stats["n_correct_dogs"] + results_stats["n_correct_not_dogs"] != results_stats["n_images"]:
             print(" They are some dogs Misclassifications: ")
             for result in results_dic:
-                if sum(results_dic[result][3:] == 1):
-                    print(" Pet image: ", result, "Classified label", results_dic[result][1])
+                if sum(results_dic[result][3:]) == 1:
+                    print(" Pet image: %-30s Classified label: %-30s"% (result, results_dic[result][1]))
         else:
             print(" They are no dog Misclassification")
 
     #Printing Misclassified Breed's of Dogs
     if print_incorrect_breed == True:
-        print(" Printing Misclassified Breeds of Dog: ")
+        print(" \nPrinting Misclassified Breeds of Dog: ")
         if results_stats["n_correct_dogs"] != results_stats["n_correct_breed"]:
             print(" They are some Misclassified Breeds of dog")
             for result in results_dic:
                 if sum(results_dic[result][3:]) == 2 and results_dic[result][2] == 0:
-                    print(" Pet image: ", result, "Classified label", results_dic[result][1])
+                    print(" Pet image: %-30s Classified label: %-30s"% (result, results_dic[result][1]))
         else:
             print(" They are NO Misclassified Breeds of dog")
-    print("Images Classification DONE !!!")
+    print("\nImages Classification DONE !!!")
     #pass
 
 

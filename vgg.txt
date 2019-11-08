@@ -2,15 +2,26 @@
 ** Here are the final results of the classification: 
 
  The model used here is:  vgg
- The Number of images:  40
- The Number of Dog Images:  30
- The Number of "Not-a" Dog Images:  10
- The percentage of Correct Dogs: 100.0
- The percentage of Correct Breed: 93.33333333333333
- The percentage of Correct "Not-a" Dog: 100.0
- The percentage of Match: 87.5
+                  N images:  40
+              N Dog Images:  30
+          N Not-Dog Images:  10
+
+
+   Percentage Correct Dogs: 100
+  Percentage Correct Breed:  93
+Percentage Correct Not-Dog: 100
+       Percentage of Match:  87
+ 
+Printing dogs Misclassifications: 
+ They are no dog Misclassification
+ 
+Printing Misclassified Breeds of Dog: 
+ They are some Misclassified Breeds of dog
+ Pet image: Beagle_01170.jpg               Classified label: walker hound, walker foxhound 
+ Pet image: Great_pyrenees_05367.jpg       Classified label: kuvasz                        
+
 Images Classification DONE !!!
 
-** Total Elapsed Runtime in seconds : 97
+** Total Elapsed Runtime in seconds : 96
 
-** Total Elapsed Runtime in hh:mm:ss : 0:1:37
+** Total Elapsed Runtime in hh:mm:ss : 0:1:36

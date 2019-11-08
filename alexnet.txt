@@ -2,13 +2,28 @@
 ** Here are the final results of the classification: 
 
  The model used here is:  alexnet
- The Number of images:  40
- The Number of Dog Images:  30
- The Number of "Not-a" Dog Images:  10
- The percentage of Correct Dogs: 100.0
- The percentage of Correct Breed: 80.0
- The percentage of Correct "Not-a" Dog: 100.0
- The percentage of Match: 75.0
+                  N images:  40
+              N Dog Images:  30
+          N Not-Dog Images:  10
+
+
+   Percentage Correct Dogs: 100
+  Percentage Correct Breed:  80
+Percentage Correct Not-Dog: 100
+       Percentage of Match:  75
+ 
+Printing dogs Misclassifications: 
+ They are no dog Misclassification
+ 
+Printing Misclassified Breeds of Dog: 
+ They are some Misclassified Breeds of dog
+ Pet image: Golden_retriever_05257.jpg     Classified label: afghan hound, afghan          
+ Pet image: Boston_terrier_02285.jpg       Classified label: basenji                       
+ Pet image: Beagle_01141.jpg               Classified label: english foxhound              
+ Pet image: Beagle_01170.jpg               Classified label: walker hound, walker foxhound 
+ Pet image: Great_pyrenees_05367.jpg       Classified label: kuvasz                        
+ Pet image: Golden_retriever_05182.jpg     Classified label: tibetan mastiff               
+
 Images Classification DONE !!!
 
 ** Total Elapsed Runtime in seconds : 13

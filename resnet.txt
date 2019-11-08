@@ -2,15 +2,28 @@
 ** Here are the final results of the classification: 
 
  The model used here is:  resnet
- The Number of images:  40
- The Number of Dog Images:  30
- The Number of "Not-a" Dog Images:  10
- The percentage of Correct Dogs: 100.0
- The percentage of Correct Breed: 90.0
- The percentage of Correct "Not-a" Dog: 90.0
- The percentage of Match: 82.5
+                  N images:  40
+              N Dog Images:  30
+          N Not-Dog Images:  10
+
+
+   Percentage Correct Dogs: 100
+  Percentage Correct Breed:  90
+Percentage Correct Not-Dog:  90
+       Percentage of Match:  82
+ 
+Printing dogs Misclassifications: 
+ They are some dogs Misclassifications: 
+ Pet image: cat_01.jpg                     Classified label: norwegian elkhound, elkhound  
+ 
+Printing Misclassified Breeds of Dog: 
+ They are some Misclassified Breeds of dog
+ Pet image: Beagle_01170.jpg               Classified label: walker hound, walker foxhound 
+ Pet image: Great_pyrenees_05367.jpg       Classified label: kuvasz                        
+ Pet image: Golden_retriever_05182.jpg     Classified label: leonberg                      
+
 Images Classification DONE !!!
 
-** Total Elapsed Runtime in seconds : 21
+** Total Elapsed Runtime in seconds : 18
 
-** Total Elapsed Runtime in hh:mm:ss : 0:0:21
+** Total Elapsed Runtime in hh:mm:ss : 0:0:18
